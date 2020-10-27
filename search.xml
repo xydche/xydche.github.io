@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[强制apt使用IPv4或IPv6]]></title>
+    <url>%2F2018%2F04%2F24%2F%E5%BC%BA%E5%88%B6apt%E4%BD%BF%E7%94%A8IPv4%E6%88%96IPv6%2F</url>
+    <content type="text"><![CDATA[今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。此方法适用于debian与ubuntu。 如果只是临时使用，只需要像这样执行一条命令：1apt -o Acquire::ForceIPv4=true update 如果想要默认以后都走IPv4的话，需要在/etc/apt/apt.conf.d文件夹下，创建一个99force-ipv4的文件1vim /etc/apt/apt.conf.d/99force-ipv4 并填入以下内容即可：1Acquire::ForceIPv4 "true"; 如果想要强制IPv6，道理一样的。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>apt</tag>
+        <tag>ipv4</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[梅林固件安装ssr服务端笔记]]></title>
+    <url>%2F2017%2F06%2F08%2F%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E5%AE%89%E8%A3%85ssr%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[刚入了个网件r6400，第一时间就刷成了梅林7.4，功能强大好用。但是有个小遗憾，插件中心没有ssr服务端(有什么用，ml你懂的)，于是扫论坛，发现有人成功安装运行了。本着折腾的态度，别人可以，我也可以，开始了安装之路。 准备工作路由开启SSH访问，在系统管理-系统设置里。U盘，最好格式化成ext3/ext4格式，插到路由器上。 第一步，安装EntwareEntware-ng的wiki中已经告知，新版梅林固件已经集成一键安装脚本，所以这一步很简单。SSH登录到路由之后直接运行entware-setup.sh即可，会有提示输入1选择你的U盘，之后就是等，如果网络好的话，很快，两三分钟。完成之后执行一遍12opkg updateopkg upgrade 安装环境依赖根据ShadowsocksR 服务端安装教程，git、python肯定是必须的，直接执行12opkg install gitopkg install python 论坛中还提到需要安装libopenssl库，但我在我路由器执行opkg install libopenssl之后提示已经是最新，所以这一步应该可以省略。 安装配置SSR获取源代码1git clone -b manyuser git://github.com/shadowsocksr/shadowsocksr.git 这里需要注意，SSR标准教程是git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git，我这里通不过，提示https啥啥啥，鼓捣了一会儿没搞明白，所以把https换成了git，一次通过。 服务端配置完全按照ssr官方教程来配就可以，这里就不写了。有一个地方重点说明，在~/shadowsocksr/shadowsocks/crypto/util.py源码中，找到123456 for name in lib_names: patterns = [ &apos;/usr/local/lib*/lib%s.*&apos; % name, &apos;/usr/lib*/lib%s.*&apos; % name, &apos;lib%s.*&apos; % name, &apos;%s.dll&apos; % name] 将&#39;/usr/lib*/lib%s.*&#39; % name改为&#39;/opt/lib*/lib%s.*&#39; % name，不然服务端跑不起来。改完以后的文件应该是这样的123456 for name in lib_names: patterns = [ &apos;/usr/local/lib*/lib%s.*&apos; % name, &apos;/opt/lib*/lib%s.*&apos; % name, &apos;lib%s.*&apos; % name, &apos;%s.dll&apos; % name] 运行子目录中的server.py，如果看到监听信息，恭喜你，成功了。 设置iptables想从外网访问需要设置iptables，开放你的ssr服务端口12iptables -I INPUT -p tcp --dport 端口号 -j ACCEPTiptables -I INPUT -p udp --dport 端口号 -j ACCEPT 至此，ssr服务端已基本可以跑了，开机自动运行脚本正在试，待我这里跑顺畅了再来更新。至于内网穿透，由于我这里是公网IP，只做了域名绑定，所以还是自行谷歌吧，方法很多，常见的是ngrok。如果你有更合理的建议，欢迎留言，共同探讨。 参考链接http://koolshare.cnhttps://github.com/Entware-ng/Entware-nghttps://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>ssr</tag>
+        <tag>梅林</tag>
+        <tag>entware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python第三方库lxml安装笔记]]></title>
+    <url>%2F2017%2F04%2F22%2Fpython%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93lxml%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[2017.10.23更新：原来issues #218早就有提到。安装依赖：1apt install clang libxml2-dev libxslt-dev python-dev 前段时间折腾termux，想装个lxml库，怎么都装不上，各种报错。无奈借助大谷歌，发现了这篇文章–Python中lxml模块的安装，很是受用。现在把关键部分转过来，做个笔记，忘了可以随时查看。 lxml依赖库： libxml2, libxml2-devel, libxlst, libxlst-devel, python-libxml2, python-libxslt 开始安装 本文安装环境：安卓app–termux其他系统自行修改安装命令。 第一步：安装libxml21apt install libxml2 libxml2-dev 第二步：安装libxslt1apt install libxslt libxslt-dev 第三步：安装python-libxml2 python-libxslt1apt install python-libxml2 python-libxslt 第四步：安装lxml1pip install lxml 执行完以上步骤，手机终于可以借助termux这个神器愉快的爬网页了。 参考：http://m.blog.csdn.net/article/details?id=43758179]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>lxml</tag>
+        <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python爬虫实战(一)——利用BeautifulSoup爬取糗事百科]]></title>
+    <url>%2F2017%2F04%2F21%2Fpython%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E4%B8%80-%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8BeautifulSoup%E7%88%AC%E5%8F%96%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91%2F</url>
+    <content type="text"><![CDATA[前言酷安有个不错的安卓APP叫一句，可以以桌面插件的形式显示名人名言、诗词歌赋之类的，支持自定义文本。作为一个俗人，看到这个功能我虎躯一震，何不让它显示糗百呢？没事的时候可以看一看，图个乐。学习python也有一段时间了，正好可以练练手。这是我写的第一个爬虫程序，写完一共也没花多少时间，把脚本共享出来，大家共同学习，欢迎指正。 准备 python版本：python3 第三方库：requests, BeautifulSoup, lxml(可选) 开始网址分析糗百热门的首页地址为http://www.qiushibaike.com/hot/，第二页为http://www.qiushibaike.com/hot/page/2/，后面的都是这个格式。尝试http://www.qiushibaike.com/hot/page/1/，正常加载为首页，不出所料，这下就确定了网址格式。 网页内容分析糗事大体分两种，带图片的和纯文字的，我们需要的是后者。查看网页源码可以发现，每条糗事都被包含在类似&lt;div class=&quot;article block untagged mb15&quot; id=&#39;qiushi_tag_118899109&#39;&gt;这种标签内，例如下面这条糗事：123456789101112131415161718&lt;div class="article block untagged mb15" id='qiushi_tag_118899109'&gt;......&lt;a href="/article/118899109" target="_blank" class='contentHerf' &gt;&lt;div class="content"&gt;&lt;span&gt;杨姐，感谢你为国人讲述了西游记。美猴王、猪八戒、蜘蛛精等等，早已经融入了我的生活，后来拍的西游记，都无法和你相比！！给您点赞！！您走好！！&lt;/span&gt;&lt;/div&gt;&lt;/a&gt;&lt;div class="thumb"&gt;&lt;a href="/article/118899109" target="_blank"&gt;&lt;img src="//pic.qiushibaike.com/system/pictures/11889/118899109/medium/app118899109.jpg" alt="美猴王、猪八戒、蜘蛛精等等" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="stats"&gt;&lt;span class="stats-vote"&gt;&lt;i class="number"&gt;1976&lt;/i&gt; 好笑&lt;/span&gt;&lt;span class="stats-comments"&gt;...... &lt;span&gt;标签内的文本正是我们需要的内容。通过分析其他糗事还可以知道，带图片的糗事，例如上面这条，多一个&lt;div class=&quot;thumb&quot;&gt;标签，纯文本的没有。那么我们找到&lt;a href=&quot;/article/118899109&quot; target=&quot;_blank&quot; class=&#39;contentHerf&#39;之后，判断它下一个标签是不是&lt;div class=&quot;thumb&quot;&gt;就可以排除图片糗事了。逻辑大概就是这样，比较简单，直接上代码了。如果你有效率更高的办法，欢迎提出来共同学习一下。 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445#!/usr/bin/python3import requestsfrom bs4 import BeautifulSoupfrom time import sleepdef get_qb(page_num): ''' 功能：获取糗事百科热门页面纯文字糗事 参数：page_num为需要获取的页数 返回值：list_qs 存放糗事的列表 ''' list_qs = [] # 存放糗事列表 url = 'http://www.qiushibaike.com/hot' # 糗百热门基础网址 for page in range(1, page_num + 1): cnt = 0 qbhot = '&#123;0&#125;/page/&#123;1&#125;'.format(url, str(page)) print('开始获取第&#123;0&#125;页糗事...'.format(page), end=' ') r = requests.get(qbhot) soup = BeautifulSoup(r.text, 'lxml') for tag in soup.find_all('a', class_='contentHerf'): # 注意：tag.next_sibling是一个'\n' if tag.next_sibling.next_sibling['class'] != ['thumb']: list_qs.append(tag.div.span.get_text()) cnt += 1 print('&#123;0&#125;条'.format(cnt)) if page % 4 is 0: sleep(0.5) return list_qsdef main(): page_num = 10 # 想要获取的页数 file_qb = 'qiubai.txt' # 用于保存爬取回来的数据 ls_qs = get_qb(page_num) with open(file_qb, 'w') as f: f.write('\n'.join(ls_qs)) # 每条糗事保存一行 print('Done')if __name__ == '__main__': main()]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>BeautifulSoup</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Hexo文章中添加Read More标签]]></title>
+    <url>%2F2017%2F04%2F19%2F%E5%9C%A8Hexo%E6%96%87%E7%AB%A0%E4%B8%AD%E6%B7%BB%E5%8A%A0Read-More%E6%A0%87%E7%AD%BE%2F</url>
+    <content type="text"><![CDATA[开始非常简单，只需要在文章中需要的位置添加下面一行HTML注释就可以了。1&lt;!--more--&gt; 这行注释后面的内容都将被截断，简单，方便，好用。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F04%2F19%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
