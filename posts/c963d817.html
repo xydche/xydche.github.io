@@ -23,21 +23,23 @@
     var CONFIG = {"hostname":"xydche.github.io","root":"/","scheme":"Muse","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="开始非常简单，只需要在文章中需要的位置添加下面一行HTML注释就可以了。 1&lt;!--more--&gt; 这行注释后面的内容都将被截断，简单，方便，好用。">
+  <meta name="description" content="今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。此方法适用于debian与ubuntu。  如果只是临时使用，只需要像这样执行一条命令： 1apt -o Acquire::ForceIPv4&#x3D;true update 如果想要默认以后都走IPv4的话，需要在&#x2F;etc&#x2F;apt&#x2F;apt.conf.d文件夹下，创建一个99force">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Hexo文章中添加Read More标签">
-<meta property="og:url" content="https://xydche.github.io/2017/04/19/%E5%9C%A8Hexo%E6%96%87%E7%AB%A0%E4%B8%AD%E6%B7%BB%E5%8A%A0Read-More%E6%A0%87%E7%AD%BE/index.html">
+<meta property="og:title" content="强制apt使用IPv4或IPv6">
+<meta property="og:url" content="https://xydche.github.io/posts/c963d817.html">
 <meta property="og:site_name" content="xydche的博客">
-<meta property="og:description" content="开始非常简单，只需要在文章中需要的位置添加下面一行HTML注释就可以了。 1&lt;!--more--&gt; 这行注释后面的内容都将被截断，简单，方便，好用。">
+<meta property="og:description" content="今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。此方法适用于debian与ubuntu。  如果只是临时使用，只需要像这样执行一条命令： 1apt -o Acquire::ForceIPv4&#x3D;true update 如果想要默认以后都走IPv4的话，需要在&#x2F;etc&#x2F;apt&#x2F;apt.conf.d文件夹下，创建一个99force">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-04-18T19:57:21.000Z">
+<meta property="article:published_time" content="2018-04-24T13:06:58.000Z">
 <meta property="article:modified_time" content="2020-10-27T10:48:13.263Z">
 <meta property="article:author" content="xydche">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="apt">
+<meta property="article:tag" content="ipv4">
+<meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://xydche.github.io/2017/04/19/%E5%9C%A8Hexo%E6%96%87%E7%AB%A0%E4%B8%AD%E6%B7%BB%E5%8A%A0Read-More%E6%A0%87%E7%AD%BE/">
+<link rel="canonical" href="https://xydche.github.io/posts/c963d817.html">
 
 
 <script class="page-configurations">
@@ -50,7 +52,7 @@
   };
 </script>
 
-  <title>在Hexo文章中添加Read More标签 | xydche的博客</title>
+  <title>强制apt使用IPv4或IPv6 | xydche的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97472266-1"></script>
     <script>
@@ -213,7 +215,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -225,7 +227,6 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -292,7 +293,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/2017/04/19/%E5%9C%A8Hexo%E6%96%87%E7%AB%A0%E4%B8%AD%E6%B7%BB%E5%8A%A0Read-More%E6%A0%87%E7%AD%BE/">
+    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/posts/c963d817.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -305,7 +306,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在Hexo文章中添加Read More标签
+          强制apt使用IPv4或IPv6
         </h1>
 
         <div class="post-meta-container">
@@ -316,7 +317,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-04-19 03:57:21" itemprop="dateCreated datePublished" datetime="2017-04-19T03:57:21+08:00">2017-04-19</time>
+      <time title="创建时间：2018-04-24 21:06:58" itemprop="dateCreated datePublished" datetime="2018-04-24T21:06:58+08:00">2018-04-24</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -352,9 +353,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>非常简单，只需要在文章中需要的位置添加下面一行<code>HTML</code>注释就可以了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这行注释后面的内容都将被截断，简单，方便，好用。</p>
+        <p>今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。<br>此方法适用于<code>debian</code>与<code>ubuntu</code>。</p>
+<hr>
+<p>如果只是临时使用，只需要像这样执行一条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt -o Acquire::ForceIPv4=<span class="literal">true</span> update</span><br></pre></td></tr></table></figure>
+<p>如果想要默认以后都走IPv4的话，需要在<code>/etc/apt/apt.conf.d</code>文件夹下，创建一个<code>99force-ipv4</code>的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/apt.conf.d/99force-ipv4</span><br></pre></td></tr></table></figure>
+<p>并填入以下内容即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Acquire::ForceIPv4 <span class="string">&quot;true&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>如果想要强制IPv6，道理一样的。</p>
 
     </div>
 
@@ -364,20 +371,22 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/apt/" rel="tag"># apt</a>
+              <a href="/tags/ipv4/" rel="tag"># ipv4</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2017/04/19/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/posts/e17553cc.html" rel="prev" title="梅林固件安装ssr服务端笔记">
+                  <i class="fa fa-chevron-left"></i> 梅林固件安装ssr服务端笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2017/04/21/python%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E4%B8%80-%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8BeautifulSoup%E7%88%AC%E5%8F%96%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91/" rel="next" title="python爬虫实战(一)——利用BeautifulSoup爬取糗事百科">
-                  python爬虫实战(一)——利用BeautifulSoup爬取糗事百科 <i class="fa fa-chevron-right"></i>
+                <a href="/posts/ef3aa99.html" rel="next" title="hexo部署后是空白页">
+                  hexo部署后是空白页 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -507,7 +516,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'xydche.github.io',
       owner       : 'xydche',
       admin       : ['xydche'],
-      id          : '3d651e62926954c27b3ab1b137ee562c',
+      id          : 'a17663a19cf305b2a19b396af936c8a3',
         language: '',
       distractionFreeMode: true
     });

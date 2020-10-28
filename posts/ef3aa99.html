@@ -23,23 +23,22 @@
     var CONFIG = {"hostname":"xydche.github.io","root":"/","scheme":"Muse","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="刚入了个网件r6400，第一时间就刷成了梅林7.4，功能强大好用。但是有个小遗憾，插件中心没有ssr服务端(有什么用，ml你懂的)，于是扫论坛，发现有人成功安装运行了。本着折腾的态度，别人可以，我也可以，开始了安装之路。">
+  <meta name="description" content="大坑今天在工作本上重新部署了一下hexo，本地测试都正常，deploy到github上，结果，变成空白页了！！！炸裂！停更很长时间，我以为是Github改规则了，翻遍了pages的说明文档也没有发现有违规的用法。又是重新部署又是改设置，主题都换了，还是不行。不死心，晚上回家在手机上用termux又试了一遍，本地和pages都正常。什么情况！仔细检查了public文件夹，我发现电脑上的index.h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="梅林固件安装ssr服务端笔记">
-<meta property="og:url" content="https://xydche.github.io/2017/06/08/%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E5%AE%89%E8%A3%85ssr%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="hexo部署后是空白页">
+<meta property="og:url" content="https://xydche.github.io/posts/ef3aa99.html">
 <meta property="og:site_name" content="xydche的博客">
-<meta property="og:description" content="刚入了个网件r6400，第一时间就刷成了梅林7.4，功能强大好用。但是有个小遗憾，插件中心没有ssr服务端(有什么用，ml你懂的)，于是扫论坛，发现有人成功安装运行了。本着折腾的态度，别人可以，我也可以，开始了安装之路。">
+<meta property="og:description" content="大坑今天在工作本上重新部署了一下hexo，本地测试都正常，deploy到github上，结果，变成空白页了！！！炸裂！停更很长时间，我以为是Github改规则了，翻遍了pages的说明文档也没有发现有违规的用法。又是重新部署又是改设置，主题都换了，还是不行。不死心，晚上回家在手机上用termux又试了一遍，本地和pages都正常。什么情况！仔细检查了public文件夹，我发现电脑上的index.h">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-06-08T06:57:58.000Z">
-<meta property="article:modified_time" content="2020-10-27T10:48:13.263Z">
+<meta property="article:published_time" content="2020-10-27T13:10:00.000Z">
+<meta property="article:modified_time" content="2020-10-27T14:25:27.332Z">
 <meta property="article:author" content="xydche">
-<meta property="article:tag" content="ssr">
-<meta property="article:tag" content="梅林">
-<meta property="article:tag" content="entware">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="nodejs">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://xydche.github.io/2017/06/08/%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E5%AE%89%E8%A3%85ssr%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="https://xydche.github.io/posts/ef3aa99.html">
 
 
 <script class="page-configurations">
@@ -52,7 +51,7 @@
   };
 </script>
 
-  <title>梅林固件安装ssr服务端笔记 | xydche的博客</title>
+  <title>hexo部署后是空白页 | xydche的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97472266-1"></script>
     <script>
@@ -227,7 +226,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85Entware"><span class="nav-number">2.</span> <span class="nav-text">第一步，安装Entware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">安装环境依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AESSR"><span class="nav-number">4.</span> <span class="nav-text">安装配置SSR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">获取源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">服务端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEiptables"><span class="nav-number">4.3.</span> <span class="nav-text">设置iptables</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%9D%91"><span class="nav-number">1.</span> <span class="nav-text">大坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97"><span class="nav-number">2.</span> <span class="nav-text">避坑指南</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -294,7 +293,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/2017/06/08/%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E5%AE%89%E8%A3%85ssr%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/posts/ef3aa99.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -307,7 +306,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          梅林固件安装ssr服务端笔记
+          hexo部署后是空白页
         </h1>
 
         <div class="post-meta-container">
@@ -317,23 +316,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2017-06-08 14:57:58" itemprop="dateCreated datePublished" datetime="2017-06-08T14:57:58+08:00">2017-06-08</time>
+      <time title="创建时间：2020-10-27 21:10:00 / 修改时间：22:25:27" itemprop="dateCreated datePublished" datetime="2020-10-27T21:10:00+08:00">2020-10-27</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-27 18:48:13" itemprop="dateModified" datetime="2020-10-27T18:48:13+08:00">2020-10-27</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+          <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
         </span>
     </span>
 
@@ -354,26 +347,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>刚入了个网件r6400，第一时间就刷成了梅林7.4，功能强大好用。但是有个小遗憾，插件中心没有ssr服务端(有什么用，ml你懂的)，于是扫论坛，发现有人成功安装运行了。本着折腾的态度，别人可以，我也可以，开始了安装之路。</p>
-<a id="more"></a>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>路由开启SSH访问，在<code>系统管理-系统设置</code>里。<br>U盘，最好格式化成ext3/ext4格式，插到路由器上。</p>
-<h1 id="第一步，安装Entware"><a href="#第一步，安装Entware" class="headerlink" title="第一步，安装Entware"></a>第一步，安装Entware</h1><p>Entware-ng的wiki中已经告知，新版梅林固件已经集成一键安装脚本，所以这一步很简单。SSH登录到路由之后直接运行<code>entware-setup.sh</code>即可，会有提示输入<code>1</code>选择你的U盘，之后就是等，如果网络好的话，很快，两三分钟。<br>完成之后执行一遍</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg upgrade</span><br></pre></td></tr></table></figure>
-<h1 id="安装环境依赖"><a href="#安装环境依赖" class="headerlink" title="安装环境依赖"></a>安装环境依赖</h1><p>根据<a target="_blank" rel="noopener" href="https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup">ShadowsocksR 服务端安装教程</a>，<code>git</code>、<code>python</code>肯定是必须的，直接执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg install git</span><br><span class="line">opkg install python</span><br></pre></td></tr></table></figure>
-<p>论坛中还提到需要安装<code>libopenssl</code>库，但我在我路由器执行<code>opkg install libopenssl</code>之后提示已经是最新，所以这一步应该可以省略。</p>
-<h1 id="安装配置SSR"><a href="#安装配置SSR" class="headerlink" title="安装配置SSR"></a>安装配置SSR</h1><h2 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b manyuser git://github.com/shadowsocksr/shadowsocksr.git</span><br></pre></td></tr></table></figure>
-<p>这里需要注意，SSR标准教程是<code>git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git</code>，我这里通不过，提示https啥啥啥，鼓捣了一会儿没搞明白，所以把https换成了git，一次通过。</p>
-<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><p>完全按照ssr官方教程来配就可以，这里就不写了。有一个地方重点说明，在<code>~/shadowsocksr/shadowsocks/crypto/util.py</code>源码中，找到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">        for name in lib_names:</span><br><span class="line">            patterns &#x3D; [</span><br><span class="line">                &#39;&#x2F;usr&#x2F;local&#x2F;lib*&#x2F;lib%s.*&#39; % name,</span><br><span class="line">                &#39;&#x2F;usr&#x2F;lib*&#x2F;lib%s.*&#39; % name,</span><br><span class="line">                &#39;lib%s.*&#39; % name,</span><br><span class="line">                &#39;%s.dll&#39; % name]</span><br></pre></td></tr></table></figure>
-<p>将<code>&#39;/usr/lib*/lib%s.*&#39; % name</code>改为<code>&#39;/opt/lib*/lib%s.*&#39; % name</code>，不然服务端跑不起来。改完以后的文件应该是这样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">        for name in lib_names:</span><br><span class="line">            patterns &#x3D; [</span><br><span class="line">                &#39;&#x2F;usr&#x2F;local&#x2F;lib*&#x2F;lib%s.*&#39; % name,</span><br><span class="line">                &#39;&#x2F;opt&#x2F;lib*&#x2F;lib%s.*&#39; % name,</span><br><span class="line">                &#39;lib%s.*&#39; % name,</span><br><span class="line">                &#39;%s.dll&#39; % name]</span><br></pre></td></tr></table></figure>
-<p>运行子目录中的<code>server.py</code>，如果看到监听信息，恭喜你，成功了。</p>
-<h2 id="设置iptables"><a href="#设置iptables" class="headerlink" title="设置iptables"></a>设置iptables</h2><p>想从外网访问需要设置iptables，开放你的ssr服务端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 端口号 -j ACCEPT</span><br><span class="line">iptables -I INPUT -p udp --dport 端口号 -j ACCEPT</span><br></pre></td></tr></table></figure>
-
-<p>至此，ssr服务端已基本可以跑了，开机自动运行脚本正在试，待我这里跑顺畅了再来更新。至于内网穿透，由于我这里是公网IP，只做了域名绑定，所以还是自行谷歌吧，方法很多，常见的是ngrok。如果你有更合理的建议，欢迎留言，共同探讨。</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="http://koolshare.cn/">http://koolshare.cn</a><br><a target="_blank" rel="noopener" href="https://github.com/Entware-ng/Entware-ng">https://github.com/Entware-ng/Entware-ng</a><br><a target="_blank" rel="noopener" href="https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup">https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup</a></p>
+        <h2 id="大坑"><a href="#大坑" class="headerlink" title="大坑"></a>大坑</h2><p>今天在工作本上重新部署了一下hexo，本地测试都正常，deploy到github上，结果，<strong>变成空白页了！！！</strong>炸裂！<br>停更很长时间，我以为是Github改规则了，翻遍了pages的说明文档也没有发现有违规的用法。又是重新部署又是改设置，主题都换了，还是不行。不死心，晚上回家在手机上用termux又试了一遍，本地和pages都正常。<br>什么情况！仔细检查了public文件夹，我发现电脑上的index.html居然0kb！重新生成了几次都一样，而手机上的是正常大小。<br>两个设备nodejs版本不一样！电脑是v15，手机是v12，我把手机上升级到v14，重新npm install，问题重现</p>
+<h2 id="避坑指南"><a href="#避坑指南" class="headerlink" title="避坑指南"></a>避坑指南</h2><p>虽然从安装模块到最后部署都不报错，甚至本地网页都是正常的，但是deploy之后生成的public文件有问题！所以，部署hexo不要装太高版本的nodejs！over.</p>
 
     </div>
 
@@ -383,23 +358,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ssr/" rel="tag"># ssr</a>
-              <a href="/tags/%E6%A2%85%E6%9E%97/" rel="tag"># 梅林</a>
-              <a href="/tags/entware/" rel="tag"># entware</a>
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2017/04/22/python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93lxml%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" rel="prev" title="python第三方库lxml安装笔记">
-                  <i class="fa fa-chevron-left"></i> python第三方库lxml安装笔记
+                <a href="/posts/c963d817.html" rel="prev" title="强制apt使用IPv4或IPv6">
+                  <i class="fa fa-chevron-left"></i> 强制apt使用IPv4或IPv6
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2018/04/24/%E5%BC%BA%E5%88%B6apt%E4%BD%BF%E7%94%A8IPv4%E6%88%96IPv6/" rel="next" title="强制apt使用IPv4或IPv6">
-                  强制apt使用IPv4或IPv6 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -528,7 +499,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'xydche.github.io',
       owner       : 'xydche',
       admin       : ['xydche'],
-      id          : '6fbd1a7c872d52df79762eb913e4a1df',
+      id          : 'da690a1a3995901a5b6909ceec3dbde1',
         language: '',
       distractionFreeMode: true
     });
