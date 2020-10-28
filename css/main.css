@@ -2473,14 +2473,6 @@ ul.breadcrumb li:last-child {
   border-bottom-color: #111;
   color: #111;
 }
-.gt-header a,
-.gt-comments a,
-.gt-popup a {
-  border-bottom: none;
-}
-.gt-container .gt-popup .gt-action.is--active::before {
-  top: 0.7em;
-}
 .search-active {
   overflow: hidden;
 }
@@ -2758,7 +2750,7 @@ mark.search-keyword {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #eba8ff;
+  background: #83ff1a;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
