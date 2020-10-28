@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>python爬虫实战(一)——利用BeautifulSoup爬取糗事百科</title>
+    <url>/posts/62e166ab.html</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="http://coolapk.com/">酷安</a>有个不错的安卓APP叫<a href="http://www.coolapk.com/apk/small.word">一句</a>，可以以桌面插件的形式显示名人名言、诗词歌赋之类的，支持自定义文本。作为一个俗人，看到这个功能我虎躯一震，何不让它显示<a href="http://www.qiushibaike.com/">糗百</a>呢？没事的时候可以看一看，图个乐。学习python也有一段时间了，正好可以练练手。<br>这是我写的第一个爬虫程序，写完一共也没花多少时间，把脚本共享出来，大家共同学习，欢迎指正。</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>python版本：<strong>python3</strong></li>
+<li>第三方库：<code>requests</code>, <code>BeautifulSoup</code>, <code>lxml(可选)</code></li>
+</ul>
+<a id="more"></a>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="网址分析"><a href="#网址分析" class="headerlink" title="网址分析"></a>网址分析</h2><p>糗百热门的首页地址为<code>http://www.qiushibaike.com/hot/</code>，第二页为<code>http://www.qiushibaike.com/hot/page/2/</code>，后面的都是这个格式。尝试<code>http://www.qiushibaike.com/hot/page/1/</code>，正常加载为首页，不出所料，这下就确定了网址格式。</p>
+<h2 id="网页内容分析"><a href="#网页内容分析" class="headerlink" title="网页内容分析"></a>网页内容分析</h2><p>糗事大体分两种，带图片的和纯文字的，我们需要的是后者。查看网页源码可以发现，每条糗事都被包含在类似<code>&lt;div class=&quot;article block untagged mb15&quot; id=&#39;qiushi_tag_118899109&#39;&gt;</code>这种标签内，例如下面这条糗事：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article block untagged mb15&quot;</span> <span class="attr">id</span>=<span class="string">&#x27;qiushi_tag_118899109&#x27;</span>&gt;</span></span><br><span class="line">......</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/article/118899109&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">class</span>=<span class="string">&#x27;contentHerf&#x27;</span> &gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>杨姐，感谢你为国人讲述了西游记。美猴王、猪八戒、蜘蛛精等等，早已经融入了我的生活，后来拍的西游记，都无法和你相比！！给您点赞！！您走好！！<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;thumb&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/article/118899109&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;//pic.qiushibaike.com/system/pictures/11889/118899109/medium/app118899109.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;美猴王、猪八戒、蜘蛛精等等&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;stats&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;stats-vote&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;number&quot;</span>&gt;</span>1976<span class="tag">&lt;/<span class="name">i</span>&gt;</span> 好笑<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;stats-comments&quot;</span>&gt;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p><code>&lt;span&gt;</code>标签内的文本正是我们需要的内容。<br>通过分析其他糗事还可以知道，带图片的糗事，例如上面这条，多一个<code>&lt;div class=&quot;thumb&quot;&gt;</code>标签，纯文本的没有。那么我们找到<code>&lt;a href=&quot;/article/118899109&quot; target=&quot;_blank&quot; class=&#39;contentHerf&#39;</code>之后，判断它下一个标签是不是<code>&lt;div class=&quot;thumb&quot;&gt;</code>就可以排除图片糗事了。逻辑大概就是这样，比较简单，直接上代码了。如果你有效率更高的办法，欢迎提出来共同学习一下。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_qb</span>(<span class="params">page_num</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    功能：获取糗事百科热门页面纯文字糗事</span></span><br><span class="line"><span class="string">    参数：page_num为需要获取的页数</span></span><br><span class="line"><span class="string">    返回值：list_qs 存放糗事的列表</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    list_qs = []  <span class="comment"># 存放糗事列表</span></span><br><span class="line">    url = <span class="string">&#x27;http://www.qiushibaike.com/hot&#x27;</span>  <span class="comment"># 糗百热门基础网址</span></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, page_num + <span class="number">1</span>):</span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        qbhot = <span class="string">&#x27;&#123;0&#125;/page/&#123;1&#125;&#x27;</span>.<span class="built_in">format</span>(url, <span class="built_in">str</span>(page))</span><br><span class="line">        print(<span class="string">&#x27;开始获取第&#123;0&#125;页糗事...&#x27;</span>.<span class="built_in">format</span>(page), end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        r = requests.get(qbhot)</span><br><span class="line">        soup = BeautifulSoup(r.text, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> tag <span class="keyword">in</span> soup.find_all(<span class="string">&#x27;a&#x27;</span>, class_=<span class="string">&#x27;contentHerf&#x27;</span>):</span><br><span class="line">            <span class="comment"># 注意：tag.next_sibling是一个&#x27;\n&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> tag.next_sibling.next_sibling[<span class="string">&#x27;class&#x27;</span>] != [<span class="string">&#x27;thumb&#x27;</span>]:</span><br><span class="line">                list_qs.append(tag.div.span.get_text())</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">        print(<span class="string">&#x27;&#123;0&#125;条&#x27;</span>.<span class="built_in">format</span>(cnt))</span><br><span class="line">        <span class="keyword">if</span> page % <span class="number">4</span> <span class="keyword">is</span> <span class="number">0</span>:</span><br><span class="line">            sleep(<span class="number">0.5</span>)</span><br><span class="line">    <span class="keyword">return</span> list_qs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    page_num = <span class="number">10</span>  <span class="comment"># 想要获取的页数</span></span><br><span class="line">    file_qb = <span class="string">&#x27;qiubai.txt&#x27;</span>  <span class="comment"># 用于保存爬取回来的数据</span></span><br><span class="line"></span><br><span class="line">    ls_qs = get_qb(page_num)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_qb, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">&#x27;\n&#x27;</span>.join(ls_qs))  <span class="comment"># 每条糗事保存一行</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">&#x27;Done&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>BeautifulSoup</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python第三方库lxml安装笔记</title>
+    <url>/posts/18113d03.html</url>
+    <content><![CDATA[<p>2017.10.23更新：<br>原来<a href="https://github.com/termux/termux-packages/issues/218">issues #218</a>早就有提到。<br>安装依赖：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install clang libxml2-dev libxslt-dev python-dev</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>前段时间折腾<code>termux</code>，想装个lxml库，怎么都装不上，各种报错。无奈借助大谷歌，发现了这篇文章–<a href="http://m.blog.csdn.net/article/details?id=43758179">Python中lxml模块的安装</a>，很是受用。现在把关键部分转过来，做个笔记，忘了可以随时查看。</p>
+<blockquote>
+<p><strong>lxml依赖库：</strong><br>     libxml2, libxml2-devel, libxlst, libxlst-devel, python-libxml2, python-libxslt</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><hr>
+<p>本文安装环境：安卓app–<strong>termux</strong><br>其他系统自行修改安装命令。</p>
+<h2 id="第一步：安装libxml2"><a href="#第一步：安装libxml2" class="headerlink" title="第一步：安装libxml2"></a>第一步：安装libxml2</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install libxml2 libxml2-dev</span><br></pre></td></tr></table></figure>
+<h2 id="第二步：安装libxslt"><a href="#第二步：安装libxslt" class="headerlink" title="第二步：安装libxslt"></a>第二步：安装libxslt</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install libxslt libxslt-dev</span><br></pre></td></tr></table></figure>
+<h2 id="第三步：安装python-libxml2-python-libxslt"><a href="#第三步：安装python-libxml2-python-libxslt" class="headerlink" title="第三步：安装python-libxml2   python-libxslt"></a>第三步：安装python-libxml2   python-libxslt</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install python-libxml2 python-libxslt</span><br></pre></td></tr></table></figure>
+<h2 id="第四步：安装lxml"><a href="#第四步：安装lxml" class="headerlink" title="第四步：安装lxml"></a>第四步：安装lxml</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install lxml</span><br></pre></td></tr></table></figure>
+
+<p>执行完以上步骤，手机终于可以借助termux这个神器愉快的爬网页了。</p>
+<p>参考：<br><a href="http://m.blog.csdn.net/article/details?id=43758179">http://m.blog.csdn.net/article/details?id=43758179</a></p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>lxml</tag>
+        <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo部署后是空白页</title>
     <url>/posts/ef3aa99.html</url>
     <content><![CDATA[<h2 id="大坑"><a href="#大坑" class="headerlink" title="大坑"></a>大坑</h2><p>今天在工作本上重新部署了一下hexo，本地测试都正常，deploy到github上，结果，<strong>变成空白页了！！！</strong>炸裂！<br>停更很长时间，我以为是Github改规则了，翻遍了pages的说明文档也没有发现有违规的用法。又是重新部署又是改设置，主题都换了，还是不行。不死心，晚上回家在手机上用termux又试了一遍，本地和pages都正常。<br>什么情况！仔细检查了public文件夹，我发现电脑上的index.html居然0kb！重新生成了几次都一样，而手机上的是正常大小。<br>两个设备nodejs版本不一样！电脑是v15，手机是v12，我把手机上升级到v14，重新npm install，问题重现</p>
@@ -81,82 +157,6 @@
         <tag>ssr</tag>
         <tag>梅林</tag>
         <tag>entware</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>python第三方库lxml安装笔记</title>
-    <url>/posts/18113d03.html</url>
-    <content><![CDATA[<p>2017.10.23更新：<br>原来<a href="https://github.com/termux/termux-packages/issues/218">issues #218</a>早就有提到。<br>安装依赖：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install clang libxml2-dev libxslt-dev python-dev</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>前段时间折腾<code>termux</code>，想装个lxml库，怎么都装不上，各种报错。无奈借助大谷歌，发现了这篇文章–<a href="http://m.blog.csdn.net/article/details?id=43758179">Python中lxml模块的安装</a>，很是受用。现在把关键部分转过来，做个笔记，忘了可以随时查看。</p>
-<blockquote>
-<p><strong>lxml依赖库：</strong><br>     libxml2, libxml2-devel, libxlst, libxlst-devel, python-libxml2, python-libxslt</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><hr>
-<p>本文安装环境：安卓app–<strong>termux</strong><br>其他系统自行修改安装命令。</p>
-<h2 id="第一步：安装libxml2"><a href="#第一步：安装libxml2" class="headerlink" title="第一步：安装libxml2"></a>第一步：安装libxml2</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install libxml2 libxml2-dev</span><br></pre></td></tr></table></figure>
-<h2 id="第二步：安装libxslt"><a href="#第二步：安装libxslt" class="headerlink" title="第二步：安装libxslt"></a>第二步：安装libxslt</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install libxslt libxslt-dev</span><br></pre></td></tr></table></figure>
-<h2 id="第三步：安装python-libxml2-python-libxslt"><a href="#第三步：安装python-libxml2-python-libxslt" class="headerlink" title="第三步：安装python-libxml2   python-libxslt"></a>第三步：安装python-libxml2   python-libxslt</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install python-libxml2 python-libxslt</span><br></pre></td></tr></table></figure>
-<h2 id="第四步：安装lxml"><a href="#第四步：安装lxml" class="headerlink" title="第四步：安装lxml"></a>第四步：安装lxml</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install lxml</span><br></pre></td></tr></table></figure>
-
-<p>执行完以上步骤，手机终于可以借助termux这个神器愉快的爬网页了。</p>
-<p>参考：<br><a href="http://m.blog.csdn.net/article/details?id=43758179">http://m.blog.csdn.net/article/details?id=43758179</a></p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>lxml</tag>
-        <tag>termux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python爬虫实战(一)——利用BeautifulSoup爬取糗事百科</title>
-    <url>/posts/62e166ab.html</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="http://coolapk.com/">酷安</a>有个不错的安卓APP叫<a href="http://www.coolapk.com/apk/small.word">一句</a>，可以以桌面插件的形式显示名人名言、诗词歌赋之类的，支持自定义文本。作为一个俗人，看到这个功能我虎躯一震，何不让它显示<a href="http://www.qiushibaike.com/">糗百</a>呢？没事的时候可以看一看，图个乐。学习python也有一段时间了，正好可以练练手。<br>这是我写的第一个爬虫程序，写完一共也没花多少时间，把脚本共享出来，大家共同学习，欢迎指正。</p>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
-<li>python版本：<strong>python3</strong></li>
-<li>第三方库：<code>requests</code>, <code>BeautifulSoup</code>, <code>lxml(可选)</code></li>
-</ul>
-<a id="more"></a>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="网址分析"><a href="#网址分析" class="headerlink" title="网址分析"></a>网址分析</h2><p>糗百热门的首页地址为<code>http://www.qiushibaike.com/hot/</code>，第二页为<code>http://www.qiushibaike.com/hot/page/2/</code>，后面的都是这个格式。尝试<code>http://www.qiushibaike.com/hot/page/1/</code>，正常加载为首页，不出所料，这下就确定了网址格式。</p>
-<h2 id="网页内容分析"><a href="#网页内容分析" class="headerlink" title="网页内容分析"></a>网页内容分析</h2><p>糗事大体分两种，带图片的和纯文字的，我们需要的是后者。查看网页源码可以发现，每条糗事都被包含在类似<code>&lt;div class=&quot;article block untagged mb15&quot; id=&#39;qiushi_tag_118899109&#39;&gt;</code>这种标签内，例如下面这条糗事：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;article block untagged mb15&quot;</span> <span class="attr">id</span>=<span class="string">&#x27;qiushi_tag_118899109&#x27;</span>&gt;</span></span><br><span class="line">......</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/article/118899109&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">class</span>=<span class="string">&#x27;contentHerf&#x27;</span> &gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>杨姐，感谢你为国人讲述了西游记。美猴王、猪八戒、蜘蛛精等等，早已经融入了我的生活，后来拍的西游记，都无法和你相比！！给您点赞！！您走好！！<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;thumb&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/article/118899109&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;//pic.qiushibaike.com/system/pictures/11889/118899109/medium/app118899109.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;美猴王、猪八戒、蜘蛛精等等&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;stats&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;stats-vote&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;number&quot;</span>&gt;</span>1976<span class="tag">&lt;/<span class="name">i</span>&gt;</span> 好笑<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;stats-comments&quot;</span>&gt;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p><code>&lt;span&gt;</code>标签内的文本正是我们需要的内容。<br>通过分析其他糗事还可以知道，带图片的糗事，例如上面这条，多一个<code>&lt;div class=&quot;thumb&quot;&gt;</code>标签，纯文本的没有。那么我们找到<code>&lt;a href=&quot;/article/118899109&quot; target=&quot;_blank&quot; class=&#39;contentHerf&#39;</code>之后，判断它下一个标签是不是<code>&lt;div class=&quot;thumb&quot;&gt;</code>就可以排除图片糗事了。逻辑大概就是这样，比较简单，直接上代码了。如果你有效率更高的办法，欢迎提出来共同学习一下。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_qb</span>(<span class="params">page_num</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    功能：获取糗事百科热门页面纯文字糗事</span></span><br><span class="line"><span class="string">    参数：page_num为需要获取的页数</span></span><br><span class="line"><span class="string">    返回值：list_qs 存放糗事的列表</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    list_qs = []  <span class="comment"># 存放糗事列表</span></span><br><span class="line">    url = <span class="string">&#x27;http://www.qiushibaike.com/hot&#x27;</span>  <span class="comment"># 糗百热门基础网址</span></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, page_num + <span class="number">1</span>):</span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        qbhot = <span class="string">&#x27;&#123;0&#125;/page/&#123;1&#125;&#x27;</span>.<span class="built_in">format</span>(url, <span class="built_in">str</span>(page))</span><br><span class="line">        print(<span class="string">&#x27;开始获取第&#123;0&#125;页糗事...&#x27;</span>.<span class="built_in">format</span>(page), end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        r = requests.get(qbhot)</span><br><span class="line">        soup = BeautifulSoup(r.text, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> tag <span class="keyword">in</span> soup.find_all(<span class="string">&#x27;a&#x27;</span>, class_=<span class="string">&#x27;contentHerf&#x27;</span>):</span><br><span class="line">            <span class="comment"># 注意：tag.next_sibling是一个&#x27;\n&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> tag.next_sibling.next_sibling[<span class="string">&#x27;class&#x27;</span>] != [<span class="string">&#x27;thumb&#x27;</span>]:</span><br><span class="line">                list_qs.append(tag.div.span.get_text())</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">        print(<span class="string">&#x27;&#123;0&#125;条&#x27;</span>.<span class="built_in">format</span>(cnt))</span><br><span class="line">        <span class="keyword">if</span> page % <span class="number">4</span> <span class="keyword">is</span> <span class="number">0</span>:</span><br><span class="line">            sleep(<span class="number">0.5</span>)</span><br><span class="line">    <span class="keyword">return</span> list_qs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    page_num = <span class="number">10</span>  <span class="comment"># 想要获取的页数</span></span><br><span class="line">    file_qb = <span class="string">&#x27;qiubai.txt&#x27;</span>  <span class="comment"># 用于保存爬取回来的数据</span></span><br><span class="line"></span><br><span class="line">    ls_qs = get_qb(page_num)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_qb, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">&#x27;\n&#x27;</span>.join(ls_qs))  <span class="comment"># 每条糗事保存一行</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">&#x27;Done&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>BeautifulSoup</tag>
-        <tag>爬虫</tag>
       </tags>
   </entry>
 </search>

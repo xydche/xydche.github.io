@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xydche.github.io/posts/62e166ab.html</loc>
+    
+    <lastmod>2020-10-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/posts/18113d03.html</loc>
+    
+    <lastmod>2020-10-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xydche.github.io/posts/5148ac91.html</loc>
     
     <lastmod>2020-10-28</lastmod>
@@ -23,14 +37,7 @@
   </url>
   
   <url>
-    <loc>https://xydche.github.io/posts/18113d03.html</loc>
-    
-    <lastmod>2020-10-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xydche.github.io/posts/62e166ab.html</loc>
+    <loc>https://xydche.github.io/posts/4a17b156.html</loc>
     
     <lastmod>2020-10-28</lastmod>
     
@@ -38,13 +45,6 @@
   
   <url>
     <loc>https://xydche.github.io/posts/ef3aa99.html</loc>
-    
-    <lastmod>2020-10-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xydche.github.io/posts/4a17b156.html</loc>
     
     <lastmod>2020-10-28</lastmod>
     
@@ -86,6 +86,41 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://xydche.github.io/tags/python/</loc>
+    <lastmod>2020-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/tags/BeautifulSoup/</loc>
+    <lastmod>2020-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
+    <lastmod>2020-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/tags/lxml/</loc>
+    <lastmod>2020-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/tags/termux/</loc>
+    <lastmod>2020-10-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://xydche.github.io/tags/hexo/</loc>
@@ -143,45 +178,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://xydche.github.io/tags/python/</loc>
-    <lastmod>2020-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xydche.github.io/tags/lxml/</loc>
-    <lastmod>2020-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xydche.github.io/tags/termux/</loc>
-    <lastmod>2020-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xydche.github.io/tags/BeautifulSoup/</loc>
-    <lastmod>2020-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xydche.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2020-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://xydche.github.io/categories/hexo/</loc>
+    <loc>https://xydche.github.io/categories/python/</loc>
     <lastmod>2020-10-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -195,7 +195,7 @@
   </url>
   
   <url>
-    <loc>https://xydche.github.io/categories/python/</loc>
+    <loc>https://xydche.github.io/categories/hexo/</loc>
     <lastmod>2020-10-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
