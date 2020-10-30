@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>免流服务端配置备忘</title>
+    <url>/posts/4e89c614.html</url>
+    <content><![CDATA[<h1 id="V2ray免流服务端配置备忘"><a href="#V2ray免流服务端配置备忘" class="headerlink" title="V2ray免流服务端配置备忘"></a>V2ray免流服务端配置备忘</h1><p>感谢伟大的项目<a href="https://www.v2fly.org/">Project V</a>。<br><img src="https://www.v2fly.org/v2ray.png" alt="v2flay"></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;log&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;loglevel&quot;</span>: <span class="string">&quot;warning&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">&quot;inbound&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;vmess&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;port&quot;</span>: <span class="number">443</span>,</span><br><span class="line">		<span class="attr">&quot;settings&quot;</span>: &#123;</span><br><span class="line">			<span class="attr">&quot;clients&quot;</span>: [&#123;</span><br><span class="line">				<span class="attr">&quot;id&quot;</span>: <span class="string">&quot;替换uuid&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;alterId&quot;</span>: <span class="number">16</span>,</span><br><span class="line">				<span class="attr">&quot;security&quot;</span>: <span class="string">&quot;aes-128-gcm&quot;</span></span><br><span class="line">			&#125;]</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">&quot;streamSettings&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;network&quot;</span>: <span class="string">&quot;tcp&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tcpSettings&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;header&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;Host&quot;</span>: [<span class="string">&quot;免流host&quot;</span>],</span><br><span class="line">                    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;http&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;response&quot;</span>: &#123;</span><br><span class="line">                        <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.1&quot;</span>,</span><br><span class="line">                        <span class="attr">&quot;status&quot;</span>: <span class="string">&quot;200&quot;</span>,</span><br><span class="line">                        <span class="attr">&quot;reason&quot;</span>: <span class="string">&quot;OK&quot;</span>,</span><br><span class="line">                        <span class="attr">&quot;headers&quot;</span>: &#123;</span><br><span class="line">                            <span class="attr">&quot;Content-Type&quot;</span>: [<span class="string">&quot;application/octet-stream&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;application/x-msdownload&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;text/html&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;application/x-shockwave-flash&quot;</span>],</span><br><span class="line">                            <span class="attr">&quot;Transfer-Encoding&quot;</span>: [<span class="string">&quot;chunked&quot;</span>],</span><br><span class="line">                            <span class="attr">&quot;Connection&quot;</span>: [<span class="string">&quot;keep-alive&quot;</span>],</span><br><span class="line">                            <span class="attr">&quot;Pragma&quot;</span>: <span class="string">&quot;no-cache&quot;</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">&quot;inboundDetour&quot;</span>: [],</span><br><span class="line">	<span class="attr">&quot;outbound&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;freedom&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;settings&quot;</span>: &#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>免流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -18,6 +31,20 @@
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>hexo部署后是空白页</title>
+    <url>/posts/ef3aa99.html</url>
+    <content><![CDATA[<h2 id="大坑"><a href="#大坑" class="headerlink" title="大坑"></a>大坑</h2><p>今天在工作本上重新部署了一下hexo，本地测试都正常，deploy到github上，结果，<strong>变成空白页了！！！</strong>炸裂！<br>停更很长时间，我以为是Github改规则了，翻遍了pages的说明文档也没有发现有违规的用法。又是重新部署又是改设置，主题都换了，还是不行。不死心，晚上回家在手机上用termux又试了一遍，本地和pages都正常。<br>什么情况！仔细检查了public文件夹，我发现电脑上的index.html居然0kb！重新生成了几次都一样，而手机上的是正常大小。<br>两个设备nodejs版本不一样！电脑是v15，手机是v12，我把手机上升级到v14，重新npm install，问题重现</p>
+<h2 id="避坑指南"><a href="#避坑指南" class="headerlink" title="避坑指南"></a>避坑指南</h2><p>虽然从安装模块到最后部署都不报错，甚至本地网页都是正常的，但是deploy之后生成的public文件有问题！所以，部署hexo不要装太高版本的nodejs！over.</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>nodejs</tag>
+      </tags>
   </entry>
   <entry>
     <title>python爬虫实战(一)——利用BeautifulSoup爬取糗事百科</title>
@@ -74,20 +101,6 @@
         <tag>python</tag>
         <tag>lxml</tag>
         <tag>termux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo部署后是空白页</title>
-    <url>/posts/ef3aa99.html</url>
-    <content><![CDATA[<h2 id="大坑"><a href="#大坑" class="headerlink" title="大坑"></a>大坑</h2><p>今天在工作本上重新部署了一下hexo，本地测试都正常，deploy到github上，结果，<strong>变成空白页了！！！</strong>炸裂！<br>停更很长时间，我以为是Github改规则了，翻遍了pages的说明文档也没有发现有违规的用法。又是重新部署又是改设置，主题都换了，还是不行。不死心，晚上回家在手机上用termux又试了一遍，本地和pages都正常。<br>什么情况！仔细检查了public文件夹，我发现电脑上的index.html居然0kb！重新生成了几次都一样，而手机上的是正常大小。<br>两个设备nodejs版本不一样！电脑是v15，手机是v12，我把手机上升级到v14，重新npm install，问题重现</p>
-<h2 id="避坑指南"><a href="#避坑指南" class="headerlink" title="避坑指南"></a>避坑指南</h2><p>虽然从安装模块到最后部署都不报错，甚至本地网页都是正常的，但是deploy之后生成的public文件有问题！所以，部署hexo不要装太高版本的nodejs！over.</p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>nodejs</tag>
       </tags>
   </entry>
   <entry>

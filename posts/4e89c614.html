@@ -23,18 +23,23 @@
     var CONFIG = {"hostname":"xydche.github.io","root":"/","scheme":"Pisces","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="人生苦短，我用python!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xydche的博客">
-<meta property="og:url" content="https://xydche.github.io/categories/python/index.html">
+  <meta name="description" content="V2ray免流服务端配置备忘感谢伟大的项目Project V。 1234567891011121314151617181920212223242526272829303132333435363738394041424344&amp;#123;	&quot;log&quot;: &amp;#123;		&quot;loglevel&quot;: &quot;warning&quot;	&amp;#125;,	&quot;i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免流服务端配置备忘">
+<meta property="og:url" content="https://xydche.github.io/posts/4e89c614.html">
 <meta property="og:site_name" content="xydche的博客">
-<meta property="og:description" content="人生苦短，我用python!">
+<meta property="og:description" content="V2ray免流服务端配置备忘感谢伟大的项目Project V。 1234567891011121314151617181920212223242526272829303132333435363738394041424344&amp;#123;	&quot;log&quot;: &amp;#123;		&quot;loglevel&quot;: &quot;warning&quot;	&amp;#125;,	&quot;i">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.v2fly.org/v2ray.png">
+<meta property="article:published_time" content="2020-10-30T09:54:00.000Z">
+<meta property="article:modified_time" content="2020-10-30T09:55:13.000Z">
 <meta property="article:author" content="xydche">
+<meta property="article:tag" content="免流">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.v2fly.org/v2ray.png">
 
 
-<link rel="canonical" href="https://xydche.github.io/categories/python/">
+<link rel="canonical" href="https://xydche.github.io/posts/4e89c614.html">
 
 
 <script class="page-configurations">
@@ -42,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: python | xydche的博客</title>
+  <title>免流服务端配置备忘 | xydche的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97472266-1"></script>
     <script>
@@ -210,7 +215,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -222,6 +227,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#V2ray%E5%85%8D%E6%B5%81%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98"><span class="nav-number">1.</span> <span class="nav-text">V2ray免流服务端配置备忘</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -278,58 +284,141 @@
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">python
-          <small>分类</small>
-        </h2>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/posts/4e89c614.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xydche">
+      <meta itemprop="description" content="人生苦短，我用python!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xydche的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          免流服务端配置备忘
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2017</span>
+
+      <time title="创建时间：2020-10-30 17:54:00 / 修改时间：17:55:13" itemprop="dateCreated datePublished" datetime="2020-10-30T17:54:00+08:00">2020-10-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/posts/4e89c614.html" class="post-meta-item leancloud_visitors" data-flag-title="免流服务端配置备忘" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/4e89c614.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/4e89c614.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="V2ray免流服务端配置备忘"><a href="#V2ray免流服务端配置备忘" class="headerlink" title="V2ray免流服务端配置备忘"></a>V2ray免流服务端配置备忘</h1><p>感谢伟大的项目<a target="_blank" rel="noopener" href="https://www.v2fly.org/">Project V</a>。<br><img src="https://www.v2fly.org/v2ray.png" alt="v2flay"></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;log&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;loglevel&quot;</span>: <span class="string">&quot;warning&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">&quot;inbound&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;vmess&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;port&quot;</span>: <span class="number">443</span>,</span><br><span class="line">		<span class="attr">&quot;settings&quot;</span>: &#123;</span><br><span class="line">			<span class="attr">&quot;clients&quot;</span>: [&#123;</span><br><span class="line">				<span class="attr">&quot;id&quot;</span>: <span class="string">&quot;替换uuid&quot;</span>,</span><br><span class="line">				<span class="attr">&quot;alterId&quot;</span>: <span class="number">16</span>,</span><br><span class="line">				<span class="attr">&quot;security&quot;</span>: <span class="string">&quot;aes-128-gcm&quot;</span></span><br><span class="line">			&#125;]</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">&quot;streamSettings&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;network&quot;</span>: <span class="string">&quot;tcp&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tcpSettings&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;header&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;Host&quot;</span>: [<span class="string">&quot;免流host&quot;</span>],</span><br><span class="line">                    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;http&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;response&quot;</span>: &#123;</span><br><span class="line">                        <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.1&quot;</span>,</span><br><span class="line">                        <span class="attr">&quot;status&quot;</span>: <span class="string">&quot;200&quot;</span>,</span><br><span class="line">                        <span class="attr">&quot;reason&quot;</span>: <span class="string">&quot;OK&quot;</span>,</span><br><span class="line">                        <span class="attr">&quot;headers&quot;</span>: &#123;</span><br><span class="line">                            <span class="attr">&quot;Content-Type&quot;</span>: [<span class="string">&quot;application/octet-stream&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;application/x-msdownload&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;text/html&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;application/x-shockwave-flash&quot;</span>],</span><br><span class="line">                            <span class="attr">&quot;Transfer-Encoding&quot;</span>: [<span class="string">&quot;chunked&quot;</span>],</span><br><span class="line">                            <span class="attr">&quot;Connection&quot;</span>: [<span class="string">&quot;keep-alive&quot;</span>],</span><br><span class="line">                            <span class="attr">&quot;Pragma&quot;</span>: <span class="string">&quot;no-cache&quot;</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">&quot;inboundDetour&quot;</span>: [],</span><br><span class="line">	<span class="attr">&quot;outbound&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;protocol&quot;</span>: <span class="string">&quot;freedom&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;settings&quot;</span>: &#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2017-04-21T08:54:33+08:00"
-              content="2017-04-21">
-          04-21
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/62e166ab.html" itemprop="url">
-            <span itemprop="name">python爬虫实战(一)——利用BeautifulSoup爬取糗事百科</span>
-          </a>
-      </div>
+    <footer class="post-footer"><div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------</div>
 
-      
-    </header>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>xydche
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xydche.github.io/posts/4e89c614.html" title="免流服务端配置备忘">https://xydche.github.io/posts/4e89c614.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%8D%E6%B5%81/" rel="tag"># 免流</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/ef3aa99.html" rel="prev" title="hexo部署后是空白页">
+                  <i class="fa fa-chevron-left"></i> hexo部署后是空白页
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
 
-  
+
 
 
 
       
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -506,7 +595,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"stSXp1uJ5DJPoACCLsSThppo-MdYXbMMI","appKey":"AI7o4s7BRbPXiUeu6xx3lLe8","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":["nick","mail"]}, {
       el: '#valine-comments',
-      path: "/categories/python/",
+      path: "/posts/4e89c614.html",
       serverURLs: "https://stsxp1uj.api.lncldglobal.com"
     }));
   }, window.Valine);
