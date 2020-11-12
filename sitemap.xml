@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xydche.github.io/posts/b3700fdf.html</loc>
+    
+    <lastmod>2020-11-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xydche.github.io/posts/c6dfb919.html</loc>
     
     <lastmod>2020-11-04</lastmod>
@@ -95,7 +102,7 @@
 
   <url>
     <loc>https://xydche.github.io/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -103,112 +110,126 @@
   
   <url>
     <loc>https://xydche.github.io/tags/%E5%85%8D%E6%B5%81/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/hexo/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/nodejs/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/python/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/BeautifulSoup/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/lxml/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/termux/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/apt/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/ipv4/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/ubuntu/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/ssr/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/%E6%A2%85%E6%9E%97/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/entware/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/omv/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/tags/openmediavault/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/tags/reCAPTCHA/</loc>
+    <lastmod>2020-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/tags/v2ray/</loc>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -217,28 +238,35 @@
   
   <url>
     <loc>https://xydche.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/categories/hexo/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/categories/python/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://xydche.github.io/categories/omv/</loc>
-    <lastmod>2020-11-04</lastmod>
+    <lastmod>2020-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xydche.github.io/categories/VPS/</loc>
+    <lastmod>2020-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

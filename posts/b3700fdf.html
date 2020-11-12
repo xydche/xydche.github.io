@@ -23,23 +23,22 @@
     var CONFIG = {"hostname":"xydche.github.io","root":"/","scheme":"Pisces","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。此方法适用于debian与ubuntu。  如果只是临时使用，只需要像这样执行一条命令： 1apt -o Acquire::ForceIPv4&#x3D;true update 如果想要默认以后都走IPv4的话，需要在&#x2F;etc&#x2F;apt&#x2F;apt.conf.d文件夹下，创建一个99force">
+  <meta name="description" content="前几天入手的小鸡IP段在谷歌黑名单里，谷歌搜索的时候频繁出现“reCAPTCHA”人机验证，太烦了。找客服换ip还要花银子，而且重新给的IP有可能还是会这样。昨天抽空解决了一下，效果很满意，今天写下关键步骤，分享、备忘。以下步骤建立在ubuntu20.04上，其他系统自行变通。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强制apt使用IPv4或IPv6">
-<meta property="og:url" content="https://xydche.github.io/posts/c963d817.html">
+<meta property="og:title" content="解决谷歌搜索频繁人机验证问题">
+<meta property="og:url" content="https://xydche.github.io/posts/b3700fdf.html">
 <meta property="og:site_name" content="xydche的博客">
-<meta property="og:description" content="今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。此方法适用于debian与ubuntu。  如果只是临时使用，只需要像这样执行一条命令： 1apt -o Acquire::ForceIPv4&#x3D;true update 如果想要默认以后都走IPv4的话，需要在&#x2F;etc&#x2F;apt&#x2F;apt.conf.d文件夹下，创建一个99force">
+<meta property="og:description" content="前几天入手的小鸡IP段在谷歌黑名单里，谷歌搜索的时候频繁出现“reCAPTCHA”人机验证，太烦了。找客服换ip还要花银子，而且重新给的IP有可能还是会这样。昨天抽空解决了一下，效果很满意，今天写下关键步骤，分享、备忘。以下步骤建立在ubuntu20.04上，其他系统自行变通。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-04-24T13:06:58.000Z">
-<meta property="article:modified_time" content="2020-10-28T05:32:43.911Z">
+<meta property="article:published_time" content="2020-11-12T11:28:00.000Z">
+<meta property="article:modified_time" content="2020-11-12T13:32:22.389Z">
 <meta property="article:author" content="xydche">
-<meta property="article:tag" content="apt">
-<meta property="article:tag" content="ipv4">
-<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="reCAPTCHA">
+<meta property="article:tag" content="v2ray">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://xydche.github.io/posts/c963d817.html">
+<link rel="canonical" href="https://xydche.github.io/posts/b3700fdf.html">
 
 
 <script class="page-configurations">
@@ -52,7 +51,7 @@
   };
 </script>
 
-  <title>强制apt使用IPv4或IPv6 | xydche的博客</title>
+  <title>解决谷歌搜索频繁人机验证问题 | xydche的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97472266-1"></script>
     <script>
@@ -215,7 +214,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -227,6 +226,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87-IPv6"><span class="nav-number">1.</span> <span class="nav-text">准备 IPv6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEhosts"><span class="nav-number">2.</span> <span class="nav-text">配置hosts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4%E4%BC%98%E5%85%88"><span class="nav-number">3.</span> <span class="nav-text">IPv4优先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.1.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -296,7 +296,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/posts/c963d817.html">
+    <link itemprop="mainEntityOfPage" href="https://xydche.github.io/posts/b3700fdf.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -309,7 +309,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          强制apt使用IPv4或IPv6
+          解决谷歌搜索频繁人机验证问题
         </h1>
 
         <div class="post-meta-container">
@@ -319,28 +319,22 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2018-04-24 21:06:58" itemprop="dateCreated datePublished" datetime="2018-04-24T21:06:58+08:00">2018-04-24</time>
+      <time title="创建时间：2020-11-12 19:28:00 / 修改时间：21:32:22" itemprop="dateCreated datePublished" datetime="2020-11-12T19:28:00+08:00">2020-11-12</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-28 13:32:43" itemprop="dateModified" datetime="2020-10-28T13:32:43+08:00">2020-10-28</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+          <a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a>
         </span>
     </span>
 
   
-    <span id="/posts/c963d817.html" class="post-meta-item leancloud_visitors" data-flag-title="强制apt使用IPv4或IPv6" title="阅读次数">
+    <span id="/posts/b3700fdf.html" class="post-meta-item leancloud_visitors" data-flag-title="解决谷歌搜索频繁人机验证问题" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -355,8 +349,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/posts/c963d817.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/c963d817.html" itemprop="commentCount"></span>
+    <a title="valine" href="/posts/b3700fdf.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/b3700fdf.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -370,15 +364,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>今天有个朋友新入的vps遇到不能使用apt，看了下是系统走IPv6总是连不上，按照以下方法解决，我记录下来，以备不时之需。<br>此方法适用于<code>debian</code>与<code>ubuntu</code>。</p>
-<hr>
-<p>如果只是临时使用，只需要像这样执行一条命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt -o Acquire::ForceIPv4=<span class="literal">true</span> update</span><br></pre></td></tr></table></figure>
-<p>如果想要默认以后都走IPv4的话，需要在<code>/etc/apt/apt.conf.d</code>文件夹下，创建一个<code>99force-ipv4</code>的文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/apt.conf.d/99force-ipv4</span><br></pre></td></tr></table></figure>
-<p>并填入以下内容即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Acquire::ForceIPv4 <span class="string">&quot;true&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p>如果想要强制IPv6，道理一样的。</p>
+        <p>前几天入手的小鸡IP段在谷歌黑名单里，谷歌搜索的时候频繁出现“reCAPTCHA”人机验证，太烦了。找客服换ip还要花银子，而且重新给的IP有可能还是会这样。昨天抽空解决了一下，效果很满意，今天写下关键步骤，分享、备忘。以下步骤建立在ubuntu20.04上，其他系统自行变通。</p>
+<a id="more"></a>
+<h2 id="准备-IPv6"><a href="#准备-IPv6" class="headerlink" title="准备 IPv6"></a>准备 IPv6</h2><p>服务器编辑<code>/etc/sysctl.conf</code>，确保以下三个配置都为0，启用ipv6。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net.ipv6.conf.all.disable_ipv6 &#x3D; 0</span><br><span class="line">net.ipv6.conf.default.disable_ipv6 &#x3D; 0</span><br><span class="line">net.ipv6.conf.lo.disable_ipv6 &#x3D; 0</span><br></pre></td></tr></table></figure>
+<p>然后执行<code>sysctl -p</code>使配置生效。<br>接下来确认一下VPS商家有没有提供ipv6，如果有就去申请一个ipv6地址。如果没有，就自己注册<a target="_blank" rel="noopener" href="https://tunnelbroker.net/">tunnelbroker</a>，申请一个IPv6隧道，具体步骤谷歌一下吧，很简单。<br>执行<code>ping6 www.google.com</code>，正常情况下能ping通，说明设置正确，记录下返回的地址。</p>
+<h2 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h2><p>将上一步得到的google的地址填入<code>/etc/hosts</code>文件中，也可以自己搜索一些谷歌其他的ipv6地址填入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2404:6800:8005::68  www.google.com</span><br></pre></td></tr></table></figure>
+<p>访问<a target="_blank" rel="noopener" href="https://www.google.com/sorry/index">https://www.google.com/sorry/index</a>，如果显示的是ipv6的地址，那么人机验证的问题基本已经解决了。试着搜索几次，确实不会再弹人机验证页面。<br>但是，后遗症来了，访问其他网站变慢了，为什么？因为我用的是tunnelbroker的隧道，开启ipv6以后，默认流量全部都走ipv6隧道中转一下，速度当然上不去，接下来再解决这个问题。（原生ipv6地址的应该不会有此问题，也就没必要看下一步了。）</p>
+<h2 id="IPv4优先"><a href="#IPv4优先" class="headerlink" title="IPv4优先"></a>IPv4优先</h2><p>很简单，只需要修改<code>/etc/gai.conf</code>，将里面的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">precedence  ::ffff:0:0&#x2F;96  100</span><br></pre></td></tr></table></figure>
+<p>这一行取消注释即可，具体原理见参考链接。<br>验证一下，执行<code>wget -SO /dev/null weixin.qq.com</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># wget -SO &#x2F;dev&#x2F;null weixin.qq.com</span><br><span class="line">URL transformed to HTTPS due to an HSTS policy</span><br><span class="line">--2020-11-12 20:59:25--  https:&#x2F;&#x2F;weixin.qq.com&#x2F;</span><br><span class="line">Resolving weixin.qq.com (weixin.qq.com)... 203.205.254.110, 203.205.235.205, 240e:e1:a900:50::3a, ...</span><br><span class="line">Connecting to weixin.qq.com (weixin.qq.com)|203.205.254.110|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response...</span><br><span class="line">  HTTP&#x2F;1.1 200 OK</span><br><span class="line">  Content-Type: text&#x2F;html; charset&#x3D;utf-8</span><br><span class="line">  Cache-Control: no-cache, must-revalidate</span><br><span class="line">  Connection: keep-alive</span><br><span class="line">  Strict-Transport-Security: max-age&#x3D;31536000</span><br><span class="line">  Content-Length: 10336</span><br><span class="line">Length: 10336 (10K) [text&#x2F;html]</span><br><span class="line">Saving to: ‘&#x2F;dev&#x2F;null’</span><br><span class="line"></span><br><span class="line">&#x2F;dev&#x2F;null      0%       0  --.-KB&#x2F;s              &#x2F;dev&#x2F;null    100%  10.09K  --.-KB&#x2F;s    in 0s     </span><br><span class="line"></span><br><span class="line">2020-11-12 20:59:25 (246 MB&#x2F;s) - ‘&#x2F;dev&#x2F;null’ saved [10336&#x2F;10336]</span><br></pre></td></tr></table></figure>
+<p>可以看到weixin.qq.com解析出了ipv4和ipv6地址，连接的是ipv4地址，用同样的方法也可以看出google.com连接的是ipv6地址。大功告成。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>出现人机验证的原因是ip地址被加入黑名单了，我们最终措施是更换ip。更换ipv4地址或启用ipv6地址都可以解决此问题，只不过前者可能需要花银子，后者可能需要花时间😂。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/welcomeweb/2464836">https://blog.51cto.com/welcomeweb/2464836</a></p>
 
     </div>
 
@@ -397,7 +397,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://xydche.github.io/posts/c963d817.html" title="强制apt使用IPv4或IPv6">https://xydche.github.io/posts/c963d817.html</a>
+      <a href="https://xydche.github.io/posts/b3700fdf.html" title="解决谷歌搜索频繁人机验证问题">https://xydche.github.io/posts/b3700fdf.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -406,23 +406,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/apt/" rel="tag"># apt</a>
-              <a href="/tags/ipv4/" rel="tag"># ipv4</a>
-              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/reCAPTCHA/" rel="tag"># reCAPTCHA</a>
+              <a href="/tags/v2ray/" rel="tag"># v2ray</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/e17553cc.html" rel="prev" title="梅林固件安装ssr服务端笔记">
-                  <i class="fa fa-chevron-left"></i> 梅林固件安装ssr服务端笔记
+                <a href="/posts/c6dfb919.html" rel="prev" title="OMV配置避坑">
+                  <i class="fa fa-chevron-left"></i> OMV配置避坑
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/ef3aa99.html" rel="next" title="hexo部署后是空白页">
-                  hexo部署后是空白页 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -640,7 +636,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"stSXp1uJ5DJPoACCLsSThppo-MdYXbMMI","appKey":"AI7o4s7BRbPXiUeu6xx3lLe8","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":["nick","mail"]}, {
       el: '#valine-comments',
-      path: "/posts/c963d817.html",
+      path: "/posts/b3700fdf.html",
       serverURLs: "https://stsxp1uj.api.lncldglobal.com"
     }));
   }, window.Valine);

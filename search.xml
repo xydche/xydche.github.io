@@ -204,4 +204,31 @@
         <tag>openmediavault</tag>
       </tags>
   </entry>
+  <entry>
+    <title>解决谷歌搜索频繁人机验证问题</title>
+    <url>/posts/b3700fdf.html</url>
+    <content><![CDATA[<p>前几天入手的小鸡IP段在谷歌黑名单里，谷歌搜索的时候频繁出现“reCAPTCHA”人机验证，太烦了。找客服换ip还要花银子，而且重新给的IP有可能还是会这样。昨天抽空解决了一下，效果很满意，今天写下关键步骤，分享、备忘。以下步骤建立在ubuntu20.04上，其他系统自行变通。</p>
+<a id="more"></a>
+<h2 id="准备-IPv6"><a href="#准备-IPv6" class="headerlink" title="准备 IPv6"></a>准备 IPv6</h2><p>服务器编辑<code>/etc/sysctl.conf</code>，确保以下三个配置都为0，启用ipv6。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net.ipv6.conf.all.disable_ipv6 &#x3D; 0</span><br><span class="line">net.ipv6.conf.default.disable_ipv6 &#x3D; 0</span><br><span class="line">net.ipv6.conf.lo.disable_ipv6 &#x3D; 0</span><br></pre></td></tr></table></figure>
+<p>然后执行<code>sysctl -p</code>使配置生效。<br>接下来确认一下VPS商家有没有提供ipv6，如果有就去申请一个ipv6地址。如果没有，就自己注册<a href="https://tunnelbroker.net/">tunnelbroker</a>，申请一个IPv6隧道，具体步骤谷歌一下吧，很简单。<br>执行<code>ping6 www.google.com</code>，正常情况下能ping通，说明设置正确，记录下返回的地址。</p>
+<h2 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h2><p>将上一步得到的google的地址填入<code>/etc/hosts</code>文件中，也可以自己搜索一些谷歌其他的ipv6地址填入。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2404:6800:8005::68  www.google.com</span><br></pre></td></tr></table></figure>
+<p>访问<a href="https://www.google.com/sorry/index">https://www.google.com/sorry/index</a>，如果显示的是ipv6的地址，那么人机验证的问题基本已经解决了。试着搜索几次，确实不会再弹人机验证页面。<br>但是，后遗症来了，访问其他网站变慢了，为什么？因为我用的是tunnelbroker的隧道，开启ipv6以后，默认流量全部都走ipv6隧道中转一下，速度当然上不去，接下来再解决这个问题。（原生ipv6地址的应该不会有此问题，也就没必要看下一步了。）</p>
+<h2 id="IPv4优先"><a href="#IPv4优先" class="headerlink" title="IPv4优先"></a>IPv4优先</h2><p>很简单，只需要修改<code>/etc/gai.conf</code>，将里面的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">precedence  ::ffff:0:0&#x2F;96  100</span><br></pre></td></tr></table></figure>
+<p>这一行取消注释即可，具体原理见参考链接。<br>验证一下，执行<code>wget -SO /dev/null weixin.qq.com</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># wget -SO &#x2F;dev&#x2F;null weixin.qq.com</span><br><span class="line">URL transformed to HTTPS due to an HSTS policy</span><br><span class="line">--2020-11-12 20:59:25--  https:&#x2F;&#x2F;weixin.qq.com&#x2F;</span><br><span class="line">Resolving weixin.qq.com (weixin.qq.com)... 203.205.254.110, 203.205.235.205, 240e:e1:a900:50::3a, ...</span><br><span class="line">Connecting to weixin.qq.com (weixin.qq.com)|203.205.254.110|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response...</span><br><span class="line">  HTTP&#x2F;1.1 200 OK</span><br><span class="line">  Content-Type: text&#x2F;html; charset&#x3D;utf-8</span><br><span class="line">  Cache-Control: no-cache, must-revalidate</span><br><span class="line">  Connection: keep-alive</span><br><span class="line">  Strict-Transport-Security: max-age&#x3D;31536000</span><br><span class="line">  Content-Length: 10336</span><br><span class="line">Length: 10336 (10K) [text&#x2F;html]</span><br><span class="line">Saving to: ‘&#x2F;dev&#x2F;null’</span><br><span class="line"></span><br><span class="line">&#x2F;dev&#x2F;null      0%       0  --.-KB&#x2F;s              &#x2F;dev&#x2F;null    100%  10.09K  --.-KB&#x2F;s    in 0s     </span><br><span class="line"></span><br><span class="line">2020-11-12 20:59:25 (246 MB&#x2F;s) - ‘&#x2F;dev&#x2F;null’ saved [10336&#x2F;10336]</span><br></pre></td></tr></table></figure>
+<p>可以看到weixin.qq.com解析出了ipv4和ipv6地址，连接的是ipv4地址，用同样的方法也可以看出google.com连接的是ipv6地址。大功告成。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>出现人机验证的原因是ip地址被加入黑名单了，我们最终措施是更换ip。更换ipv4地址或启用ipv6地址都可以解决此问题，只不过前者可能需要花银子，后者可能需要花时间😂。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://blog.51cto.com/welcomeweb/2464836">https://blog.51cto.com/welcomeweb/2464836</a></p>
+]]></content>
+      <categories>
+        <category>VPS</category>
+      </categories>
+      <tags>
+        <tag>reCAPTCHA</tag>
+        <tag>v2ray</tag>
+      </tags>
+  </entry>
 </search>
